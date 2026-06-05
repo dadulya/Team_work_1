@@ -23,14 +23,12 @@ public class RecommendationRule1 implements RecommendationRuleSet {
 
     @Override
     public Optional<RecommendationDto> check(UUID userId) {
-        // Проверяем все три условия
         if (hasDebitProduct(userId) && !hasInvestProduct(userId) && getSavingDepositSum(userId) > 1000) {
             return Optional.of(new RecommendationDto(PRODUCT_NAME, PRODUCT_ID, PRODUCT_TEXT));
         }
         return Optional.empty();
     }
 
-    // Условие 1: Пользователь использует хотя бы один продукт типа DEBIT
     private boolean hasDebitProduct(UUID userId) {
         String sql = """
             SELECT COUNT(*) > 0
@@ -43,7 +41,6 @@ public class RecommendationRule1 implements RecommendationRuleSet {
         return Boolean.TRUE.equals(result);
     }
 
-    // Условие 2: Пользователь НЕ использует продукты типа INVEST
     private boolean hasInvestProduct(UUID userId) {
         String sql = """
             SELECT COUNT(*) > 0
@@ -56,7 +53,6 @@ public class RecommendationRule1 implements RecommendationRuleSet {
         return Boolean.TRUE.equals(result);
     }
 
-    // Условие 3: Сумма пополнений по продуктам типа SAVING > 1000
     private double getSavingDepositSum(UUID userId) {
         String sql = """
             SELECT COALESCE(SUM(t.amount), 0)
