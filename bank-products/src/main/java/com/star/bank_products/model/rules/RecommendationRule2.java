@@ -22,6 +22,10 @@ public class RecommendationRule2 implements RecommendationRuleSet {
             "Начните использовать «Копилку» уже сегодня и станьте ближе к своим финансовым целям!";
 
     @Autowired
+    public RecommendationRule2 (RecommendationRepository repository) {
+        this.repository = repository;
+    }
+
     private RecommendationRepository repository;
 
     @Override
