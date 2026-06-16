@@ -1,4 +1,4 @@
-package com.star.bank_products.entity;
+package com.star.bank_products.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;

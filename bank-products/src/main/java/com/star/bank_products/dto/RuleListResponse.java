@@ -1,6 +1,6 @@
 package com.star.bank_products.dto;
 
-import com.star.bank_products.entity.DynamicRuleEntity;
+import com.star.bank_products.model.DynamicRuleEntity;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.star.bank_products.service;
 
-import com.star.bank_products.entity.DynamicRuleEntity;
+import com.star.bank_products.model.DynamicRuleEntity;
 import com.star.bank_products.repository.DynamicRuleRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.star.bank_products.entity;
+package com.star.bank_products.model;
 
 import java.util.List;
 
