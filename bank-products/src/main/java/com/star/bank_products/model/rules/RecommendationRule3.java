@@ -1,7 +1,7 @@
 package com.star.bank_products.model.rules;
 
 import com.star.bank_products.dto.RecommendationDto;
-import com.star.bank_products.repository.RecomendationRepository;
+import com.star.bank_products.repository.RecommendationRepository;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -25,15 +25,15 @@ public class RecommendationRule3 implements RecommendationRuleSet {
             "автомобиля, образование, лечение и многое другое.\n\n" +
             "Не упустите возможность воспользоваться выгодными условиями кредитования от нашей компании!";
 
-    private final RecomendationRepository repository;
+    private final RecommendationRepository repository;
 
-    public RecommendationRule3(RecomendationRepository repository) {
+    public RecommendationRule3(RecommendationRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public Optional<RecommendationDto> check(UUID userId) {
-        RecomendationRepository.UserMetrics metrics = repository.getUserMetrics(userId);
+        RecommendationRepository.UserMetrics metrics = repository.getUserMetrics(userId);
 
         // Правило 1: Пользователь НЕ использует продукты с типом CREDIT.
         // hasCreditProduct == true означает, что транзакции по кредиту есть -> не подходит.
