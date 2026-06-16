@@ -9,17 +9,14 @@ import java.util.UUID;
 
 @Service
 public class RuleService {
+
     private final DynamicRuleRepository repository;
 
-    public RuleService(
-            DynamicRuleRepository repository
-    ) {
+    public RuleService(DynamicRuleRepository repository) {
         this.repository = repository;
     }
 
-    public DynamicRuleEntity createRule(
-            DynamicRuleEntity rule
-    ) {
+    public DynamicRuleEntity createRule(DynamicRuleEntity rule) {
         return repository.save(rule);
     }
 

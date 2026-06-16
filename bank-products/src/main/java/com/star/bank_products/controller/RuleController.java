@@ -1,6 +1,7 @@
 package com.star.bank_products.controller;
 
 import com.star.bank_products.dto.RuleListResponse;
+import com.star.bank_products.dto.RuleResponse;
 import com.star.bank_products.model.DynamicRuleEntity;
 import com.star.bank_products.service.RuleService;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,11 @@ public class RuleController {
 
     @GetMapping
     public RuleListResponse getRules() {
-
         return new RuleListResponse(
                 ruleService.getAllRules()
+                        .stream()
+                        .map(RuleResponse::from)
+                        .toList()
         );
     }
 
