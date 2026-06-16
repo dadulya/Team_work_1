@@ -11,6 +11,7 @@ import java.util.UUID;
 @Service
 public class RecommendationService {
 
+
     private final List<RecommendationRuleSet> ruleSets;
 
     public RecommendationService(

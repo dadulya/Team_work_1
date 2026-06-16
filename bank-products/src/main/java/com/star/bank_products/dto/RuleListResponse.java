@@ -1,0 +1,18 @@
+package com.star.bank_products.dto;
+
+import com.star.bank_products.entity.DynamicRuleEntity;
+
+import java.util.List;
+
+public class RuleListResponse {
+
+    private List<DynamicRuleEntity> data;
+
+    public RuleListResponse(List<DynamicRuleEntity> data) {
+        this.data = data;
+    }
+
+    public List<DynamicRuleEntity> getData() {
+        return data;
+    }
+}
