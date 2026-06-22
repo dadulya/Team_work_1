@@ -110,10 +110,4 @@ public class TransactionQueryRepository {
             };
         });
     }
-    public void clearAllCaches() {
-        userOfCache.invalidateAll();
-        activeUserOfCache.invalidateAll();
-        compareSumCache.invalidateAll();
-        compareDepositWithdrawCache.invalidateAll();
-    }
 }
