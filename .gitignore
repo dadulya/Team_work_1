@@ -1,28 +1,33 @@
-# ===== Java / Maven =====
+HELP.md
 target/
-*.class
-*.jar
-*.war
-*.ear
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# ===== IDEA =====
-.idea/
-*.iml
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
 *.iws
+*.iml
 *.ipr
 
-# ===== VS Code =====
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
 .vscode/
-
-# ===== Базы данных =====
-*.mv.db
-*.trace.db
-*.lock.db
-*.db
-
-# ===== Логи =====
-*.log
-
-# ===== OS =====
-.DS_Store
-Thumbs.db

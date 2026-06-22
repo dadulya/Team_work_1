@@ -1,5 +1,7 @@
 package com.star.bank_products.controller;
 
+import org.springframework.boot.info.BuildProperties;
+import org.springframework.web.bind.annotation.GetMapping;
 import com.star.bank_products.repository.TransactionQueryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +14,21 @@ import java.util.Map;
 @RequestMapping("/management")
 public class ManagementController {
 
+    private final BuildProperties buildProperties;
     private final TransactionQueryRepository transactionQueryRepository;
 
-    public ManagementController(TransactionQueryRepository transactionQueryRepository) {
+    public ManagementController(BuildProperties buildProperties, TransactionQueryRepository transactionQueryRepository) {
+        this.buildProperties = buildProperties;
         this.transactionQueryRepository = transactionQueryRepository;
     }
 
+    @GetMapping("/info")
+    public Map<String, String> info() {
+        return Map.of(
+                "name", buildProperties.getName(),
+                "version", buildProperties.getVersion()
+        );
+    }
     @PostMapping("/clear-caches")
     public ResponseEntity<Map<String, String>> clearCaches() {
         transactionQueryRepository.clearAllCaches();
