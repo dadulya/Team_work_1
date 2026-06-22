@@ -17,16 +17,21 @@ public class RecommendationService {
     private final List<RecommendationRuleSet> fixedRules;
     private final DynamicRuleRepository dynamicRuleRepository;
     private final DynamicRuleEvaluator dynamicRuleEvaluator;
+    private final RuleStatsService ruleStatsService;
 
     public RecommendationService(
             List<RecommendationRuleSet> fixedRules,
             DynamicRuleRepository dynamicRuleRepository,
-            DynamicRuleEvaluator dynamicRuleEvaluator
+            DynamicRuleEvaluator dynamicRuleEvaluator,
+            RuleStatsService ruleStatsService
     ) {
         this.fixedRules = fixedRules;
         this.dynamicRuleRepository = dynamicRuleRepository;
         this.dynamicRuleEvaluator = dynamicRuleEvaluator;
+        this.ruleStatsService = ruleStatsService;
     }
+
+
 
     public List<RecommendationDto> getRecommendations(
             UUID userId
@@ -40,11 +45,16 @@ public class RecommendationService {
         List<DynamicRuleEntity> dynamicRules = dynamicRuleRepository.findAll();
         for (DynamicRuleEntity rule : dynamicRules) {
             if (dynamicRuleEvaluator.evaluate(userId, rule)) {
-                RecommendationDto dto = new RecommendationDto(
-                        rule.getProductName(),
-                        rule.getProductId(),
-                        rule.getProductText()
+                ruleStatsService.increment(
+                        rule.getId()
                 );
+                RecommendationDto dto =
+                        new RecommendationDto(
+                                rule.getProductName(),
+                                rule.getProductId(),
+                                rule.getProductText()
+                        );
+
                 recommendations.add(dto);
             }
         }
