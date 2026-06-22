@@ -2,10 +2,8 @@ package com.star.bank_products.controller;
 
 import com.star.bank_products.dto.RuleListResponse;
 import com.star.bank_products.dto.RuleResponse;
-import com.star.bank_products.dto.RuleStatsResponse;
 import com.star.bank_products.model.DynamicRuleEntity;
 import com.star.bank_products.service.RuleService;
-import com.star.bank_products.service.RuleStatsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +14,11 @@ import java.util.UUID;
 public class RuleController {
 
     private final RuleService ruleService;
-    private final RuleStatsService ruleStatsService;
 
     public RuleController(
-            RuleService ruleService,
-            RuleStatsService ruleStatsService
+            RuleService ruleService
     ) {
         this.ruleService = ruleService;
-        this.ruleStatsService = ruleStatsService;
     }
 
     @PostMapping
@@ -51,10 +46,5 @@ public class RuleController {
         ruleService.deleteRule(id);
 
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/stats")
-    public RuleStatsResponse getStats() {
-        return ruleStatsService.getStats();
     }
 }

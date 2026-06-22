@@ -11,38 +11,20 @@ import java.util.UUID;
 public class RuleService {
 
     private final DynamicRuleRepository repository;
-    private final RuleStatsService ruleStatsService;
 
-    public RuleService(
-            DynamicRuleRepository repository,
-            RuleStatsService ruleStatsService
-    ) {
+    public RuleService(DynamicRuleRepository repository) {
         this.repository = repository;
-        this.ruleStatsService = ruleStatsService;
     }
 
-    public DynamicRuleEntity createRule(
-            DynamicRuleEntity rule
-    ) {
-
-        DynamicRuleEntity savedRule =
-                repository.save(rule);
-
-        ruleStatsService.createStatsForRule(savedRule);
-
-        return savedRule;
+    public DynamicRuleEntity createRule(DynamicRuleEntity rule) {
+        return repository.save(rule);
     }
 
     public List<DynamicRuleEntity> getAllRules() {
         return repository.findAll();
     }
 
-    public void deleteRule(
-            UUID id
-    ) {
-
-        ruleStatsService.deleteStats(id);
-
+    public void deleteRule(UUID id) {
         repository.deleteById(id);
     }
 }
