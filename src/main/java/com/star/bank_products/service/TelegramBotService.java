@@ -5,6 +5,7 @@ import com.star.bank_products.dto.RecommendationDto;
 import com.star.bank_products.dto.RecommendationResponse;
 import com.star.bank_products.model.UserEntity;
 import com.star.bank_products.repository.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -21,7 +22,7 @@ public class TelegramBotService {
     private final UserRepository userRepository;
     private final BankProductsBot bot;
 
-    public TelegramBotService(RecommendationService recommendationService, UserRepository userRepository, BankProductsBot bot) {
+    public TelegramBotService(RecommendationService recommendationService, UserRepository userRepository,@Lazy BankProductsBot bot) {
         this.recommendationService = recommendationService;
         this.userRepository = userRepository;
         this.bot = bot;
