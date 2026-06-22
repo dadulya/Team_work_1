@@ -1,0 +1,3 @@
+com\star\bank_products\controller\RuleApiTest.class
+com\star\bank_products\rule\RecommendationRule2Test.class
+com\star\bank_products\controller\DynamicRuleIntegrationTest.class

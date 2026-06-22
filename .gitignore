@@ -1,0 +1,28 @@
+# ===== Java / Maven =====
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== IDEA =====
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ===== VS Code =====
+.vscode/
+
+# ===== Базы данных =====
+*.mv.db
+*.trace.db
+*.lock.db
+*.db
+
+# ===== Логи =====
+*.log
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
