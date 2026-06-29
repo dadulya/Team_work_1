@@ -45,9 +45,9 @@ public class RecommendationService {
         List<DynamicRuleEntity> dynamicRules = dynamicRuleRepository.findAll();
         for (DynamicRuleEntity rule : dynamicRules) {
             if (dynamicRuleEvaluator.evaluate(userId, rule)) {
-                ruleStatsService.increment(
-                        rule.getId()
-                );
+
+                ruleStatsService.increment(rule.getId());
+
                 RecommendationDto dto =
                         new RecommendationDto(
                                 rule.getProductName(),

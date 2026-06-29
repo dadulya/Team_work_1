@@ -17,36 +17,21 @@ public class RuleStatsService {
 
     private final RuleStatsRepository repository;
 
-    public RuleStatsService(
-            RuleStatsRepository repository
-    ) {
+    public RuleStatsService(RuleStatsRepository repository) {
         this.repository = repository;
     }
 
-    public void createStatsForRule(
-            DynamicRuleEntity rule
-    ) {
-        repository.save(
-                new RuleStatsEntity(rule)
-        );
+    public void createStatsForRule(DynamicRuleEntity rule) {
+
+        RuleStatsEntity entity = new RuleStatsEntity(rule);
+
+        repository.save(entity);
     }
 
-    public void deleteStats(
-            UUID ruleId
-    ) {
-        repository.deleteById(ruleId);
-    }
+    public void increment(UUID ruleId) {
 
-    public void increment(
-            UUID ruleId
-    ) {
-        RuleStatsEntity stats =
-                repository.findById(ruleId)
-                        .orElseThrow();
+        repository.increment(ruleId);
 
-        stats.increment();
-
-        repository.save(stats);
     }
 
     public RuleStatsResponse getStats() {
