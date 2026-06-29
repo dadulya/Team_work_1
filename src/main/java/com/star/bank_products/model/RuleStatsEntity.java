@@ -2,12 +2,15 @@ package com.star.bank_products.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "rule_stats")
 public class RuleStatsEntity {
 
     @Id
-    private java.util.UUID ruleId;
+    @Column(name = "rule_id")
+    private UUID ruleId;
 
     @OneToOne
     @MapsId
@@ -15,7 +18,7 @@ public class RuleStatsEntity {
     private DynamicRuleEntity rule;
 
     @Column(nullable = false)
-    private long count = 0;
+    private long count;
 
     public RuleStatsEntity() {
     }
@@ -25,7 +28,7 @@ public class RuleStatsEntity {
         this.count = 0;
     }
 
-    public java.util.UUID getRuleId() {
+    public UUID getRuleId() {
         return ruleId;
     }
 
@@ -33,11 +36,15 @@ public class RuleStatsEntity {
         return rule;
     }
 
+    public void setRule(DynamicRuleEntity rule) {
+        this.rule = rule;
+    }
+
     public long getCount() {
         return count;
     }
 
-    public void increment() {
-        count++;
+    public void setCount(long count) {
+        this.count = count;
     }
 }
