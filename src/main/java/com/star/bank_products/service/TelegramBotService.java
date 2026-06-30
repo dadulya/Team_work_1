@@ -22,7 +22,7 @@ public class TelegramBotService {
     private final UserRepository userRepository;
     private final BankProductsBot bot;
 
-    public TelegramBotService(RecommendationService recommendationService, UserRepository userRepository,@Lazy BankProductsBot bot) {
+    public TelegramBotService(RecommendationService recommendationService, UserRepository userRepository, @Lazy BankProductsBot bot) {
         this.recommendationService = recommendationService;
         this.userRepository = userRepository;
         this.bot = bot;
@@ -63,7 +63,7 @@ public class TelegramBotService {
         Optional<UserEntity> userOpt = userRepository.findByUsername(username);
 
         if (userOpt.isEmpty()) {
-            sendReply(chatId, "Пользователь не найден. Проверьте правильность имени.");
+            sendReply(chatId, "Пользователь не найден.");
             return;
         }
 
@@ -81,7 +81,12 @@ public class TelegramBotService {
             }
 
             // Формируем ответ
-            StringBuilder sb = new StringBuilder("Ваши рекомендации:\n\n");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Здравствуйте ")
+                    .append(user.getUsername())
+                    .append("\n\n");
+
+            sb.append("Новые продукты для вас:\n\n");
             for (int i = 0; i < recommendations.size(); i++) {
                 RecommendationDto dto = recommendations.get(i);
                 sb.append((i + 1)).append(". ").append(dto.getName()).append("\n");
